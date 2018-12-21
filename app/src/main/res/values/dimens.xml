@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- main xml -->
+
+    <!-- center circle padding -->
+    <dimen name="circle_padding">5dp</dimen>
+    <!-- center circle's width and height -->
+    <dimen name="circle_length">150dp</dimen>
+    <!-- center circle's length -->
+    <dimen name="circle_icon_size">64dp</dimen>
+
+    <!-- circle item xml -->
+
+    <!-- center circle stroke -->
+    <dimen name="stroke_padding">0dp</dimen>
+    <!-- circle item small radius -->
+    <dimen name="circle_small_radius">10dp</dimen>
+    <!-- circle item big radius -->
+    <dimen name="circle_big_radius">130dp</dimen>
+    <!-- circle item icon's margin -->
+    <dimen name="circle_icon_margin">35dp</dimen>
+
+    <!-- order list xml -->
+
+    <!-- Margin around the floating action button in ListOrderItem List -->
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_order_item_height">88dp</dimen>
+    <dimen name="item_img_length">88dp</dimen>
+    <dimen name="item_img_radius">5dp</dimen>
+
+    <!-- order item xml -->
+    <dimen name="text_bg_stroke">0dp</dimen>
+    <dimen name="detail_img_height">196dp</dimen>
+    <dimen name="detail_reward_margin">20dp</dimen>
+    <dimen name="detail_detail_margin">16dp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+
+
+</resources>

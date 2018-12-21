@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFAD36</color>
+    <color name="colorPrimaryDark">#FF5916</color>
+    <color name="colorAccent">#FF6100</color>
+    <color name="colorBackground">#30FFAD36</color>
+    <color name="techPrimary">#495A80</color>
+    <!-- circle item -->
+    <!-- icon #B57514 -->
+</resources>

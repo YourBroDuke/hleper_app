@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.yourbroduke.android.hleper.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_signInOrOut"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:textColor="@color/techPrimary"
+        android:text="@string/signInOrUp"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageButton
+            android:layout_width="@dimen/circle_length"
+            android:layout_height="@dimen/circle_length"
+            android:layout_margin="@dimen/circle_padding"
+            android:id="@+id/imBtn_tl"
+            android:background="@android:color/transparent"
+            android:src="@drawable/tl_quarter_circle" />
+        <ImageButton
+            android:layout_width="@dimen/circle_length"
+            android:layout_height="@dimen/circle_length"
+            android:layout_margin="@dimen/circle_padding"
+            android:id="@+id/imBtn_tr"
+            android:layout_toEndOf="@id/imBtn_tl"
+            android:layout_toRightOf="@id/imBtn_tl"
+            android:background="@android:color/transparent"
+            android:src="@drawable/tr_quarter_circle"
+            />
+        <ImageButton
+            android:layout_width="@dimen/circle_length"
+            android:layout_height="@dimen/circle_length"
+            android:layout_margin="@dimen/circle_padding"
+            android:id="@+id/imBtn_bl"
+            android:layout_below="@id/imBtn_tl"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bl_quarter_circle" />
+        <ImageButton
+            android:layout_width="@dimen/circle_length"
+            android:layout_height="@dimen/circle_length"
+            android:layout_margin="@dimen/circle_padding"
+            android:id="@+id/imBtn_br"
+            android:layout_below="@id/imBtn_tr"
+            android:layout_toRightOf="@id/imBtn_bl"
+            android:layout_toEndOf="@id/imBtn_bl"
+            android:background="@android:color/transparent"
+            android:src="@drawable/br_quarter_circle"/>
+
+        <ImageView
+            android:layout_width="@dimen/circle_icon_size"
+            android:layout_height="@dimen/circle_icon_size"
+            android:src="@drawable/taxi"
+            android:layout_above="@id/imBtn_bl"
+            android:layout_toLeftOf="@id/imBtn_tr"
+            android:layout_margin="@dimen/circle_icon_margin" />
+        <ImageView
+            android:layout_width="@dimen/circle_icon_size"
+            android:layout_height="@dimen/circle_icon_size"
+            android:src="@drawable/cheers"
+            android:layout_above="@id/imBtn_br"
+            android:layout_toRightOf="@id/imBtn_tl"
+            android:layout_margin="@dimen/circle_icon_margin" />
+        <ImageView
+            android:layout_width="@dimen/circle_icon_size"
+            android:layout_height="@dimen/circle_icon_size"
+            android:src="@drawable/roastchicken"
+            android:layout_below="@id/imBtn_tl"
+            android:layout_toLeftOf="@id/imBtn_br"
+            android:layout_margin="@dimen/circle_icon_margin" />
+        <ImageView
+            android:layout_width="@dimen/circle_icon_size"
+            android:layout_height="@dimen/circle_icon_size"
+            android:src="@drawable/handshake"
+            android:layout_below="@id/imBtn_tr"
+            android:layout_toRightOf="@id/imBtn_bl"
+            android:layout_margin="@dimen/circle_icon_margin" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/main_welcome"
+        android:textColor="@color/techPrimary"
+        android:paddingBottom="10dp"
+        />
+</RelativeLayout>

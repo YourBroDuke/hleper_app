@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yourbroduke.android.hleper.OrderDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_img_height"
+        android:background="@drawable/bottom_stroke">
+
+        <ImageView
+            android:layout_width="@dimen/detail_img_height"
+            android:layout_height="@dimen/detail_img_height"
+            android:id="@+id/detail_img"
+            tools:src="@drawable/taxi512"
+            android:padding="@dimen/fab_margin"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_title"
+            tools:text="帮我拿外卖"
+            android:textStyle="bold"
+            android:layout_marginTop="22dp"
+            android:layout_toRightOf="@id/detail_img"
+            android:textSize="26sp"
+            android:textColor="@color/techPrimary"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/creator_name"
+            android:layout_toRightOf="@id/detail_img"
+            android:layout_below="@id/detail_title"
+            tools:text="发起用户：YourBroDuke"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reward_prefix"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/detail_img"
+            android:layout_marginBottom="@dimen/detail_reward_margin"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/black"
+            android:text="赏金："
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reward_data"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/reward_prefix"
+            android:layout_marginBottom="@dimen/detail_reward_margin"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/holo_red_light"
+            tools:text="1.00"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/reward_data"
+            android:layout_marginBottom="@dimen/detail_reward_margin"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/black"
+            android:text=" 元"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_ratio"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/detail_reward_margin"
+            android:layout_marginRight="8dp"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/techPrimary"
+            tools:text="0/1"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_detail"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textStyle="italic"
+        tools:text="详细信息:暂无"
+        android:layout_margin="@dimen/detail_detail_margin"
+        />
+
+</LinearLayout>
