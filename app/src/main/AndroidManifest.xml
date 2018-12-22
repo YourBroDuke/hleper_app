@@ -24,14 +24,22 @@
         <activity
             android:name=".OrderDetailActivity"
             android:parentActivityName=".OrderListActivity"
-            android:theme="@style/DetailTheme">
+            android:theme="@style/WithBarTheme">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrderListActivity" />
         </activity>
-        <activity android:name=".EditOrderActivity"></activity>
+        <activity android:name=".EditOrderActivity"
+            android:parentActivityName=".OrderListActivity"
+            android:theme="@style/WithBarTheme">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrderListActivity" />
+        </activity>
     </application>
 
 </manifest>

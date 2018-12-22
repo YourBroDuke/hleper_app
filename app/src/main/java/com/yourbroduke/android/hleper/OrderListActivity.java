@@ -18,7 +18,7 @@ public class OrderListActivity extends AppCompatActivity {
         // Get the type of current activity
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("Message");
-        int flag = bundle.getInt("type");
+        final int flag = bundle.getInt("type");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         assert viewPager != null;
@@ -36,7 +36,11 @@ public class OrderListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(OrderListActivity.this, EditOrderActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", flag);
+                intent.putExtra("Message", bundle);
+                startActivity(intent);
             }
         });
     }
