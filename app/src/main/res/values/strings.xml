@@ -25,6 +25,19 @@
     <string name="send_vcode">发送验证码</string>
     <string name="sign_up_str">注册</string>
 
+
+    <!-- Order Editor Strings -->
+    <string name="order_title">标题</string>
+    <string name="order_title_hint">title</string>
+    <string name="order_campus">校区</string>
+    <string name="order_detail">详细信息</string>
+    <string name="order_detail_hint">detail</string>
+    <string name="order_reward">赏金</string>
+    <string name="order_reward_hint">reward</string>
+    <string name="order_people_number">人数限制</string>
+    <string name="order_people_number_hint">如需要拼单一点点则输入：1</string>
+    <string name="order_type">类型</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="campus_zjg">紫金港</string>
@@ -32,4 +45,5 @@
     <string name="campus_xx">西溪</string>
     <string name="campus_zj">之江</string>
     <string name="action_refresh">refresh</string>
+
 </resources>

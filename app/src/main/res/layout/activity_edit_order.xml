@@ -8,7 +8,7 @@
     android:padding="@dimen/activity_margin"
     tools:context=".EditOrderActivity">
 
-    <!-- Overview category -->
+    <!-- Title category -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="No"
+            android:text="@string/order_title"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -28,25 +28,25 @@
             android:paddingRight="4dp"
             android:orientation="vertical">
 
-            <!-- Name field -->
+            <!-- Title field -->
             <EditText
-                android:id="@+id/edit_book_no"
-                android:hint="No"
-                android:inputType="textCapWords"
+                android:id="@+id/edit_order_title"
+                android:hint="@string/order_title_hint"
+                android:inputType="text"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Gender category -->
+    <!-- Type category -->
     <LinearLayout
-        android:id="@+id/container_book_type"
+        android:id="@+id/container_order_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="Type"
+            android:text="@string/order_type"
             style="@style/CategoryStyle" />
 
         <!-- Input field -->
@@ -56,9 +56,9 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
-            <!-- Gender drop-down spinner -->
+            <!-- Type drop-down spinner -->
             <Spinner
-                android:id="@+id/spinner_book_type"
+                android:id="@+id/spinner_order_type"
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
                 android:paddingRight="16dp"
@@ -66,16 +66,45 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Measurement category -->
+    <!-- Campus category -->
     <LinearLayout
-        android:id="@+id/container_name"
+        android:id="@+id/container_order_campus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="Name"
+            android:text="@string/order_campus"
+            style="@style/CategoryStyle" />
+
+        <!-- Input field -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- Campus drop-down spinner -->
+            <Spinner
+                android:id="@+id/spinner_order_campus"
+                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Detail category -->
+    <LinearLayout
+        android:id="@+id/container_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/order_detail"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -85,23 +114,25 @@
             android:layout_weight="2"
             android:paddingLeft="4dp">
 
-            <!-- Weight field -->
+            <!-- Detail field -->
             <EditText
-                android:id="@+id/edit_book_name"
-                android:hint="Name"
+                android:id="@+id/edit_order_detail"
+                android:hint="@string/order_detail_hint"
+                android:inputType="textLongMessage"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
 
+    <!-- Reward category -->
     <LinearLayout
-        android:id="@+id/container_publisher"
+        android:id="@+id/container_reward"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="Publisher"
+            android:text="@string/order_reward"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -111,23 +142,24 @@
             android:layout_weight="2"
             android:paddingLeft="4dp">
 
-            <!-- Weight field -->
+            <!-- Reward field -->
             <EditText
                 android:id="@+id/edit_book_publisher"
-                android:hint="Publisher"
+                android:hint="@string/order_reward_hint"
+                android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/container_year"
+        android:id="@+id/container_people_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="Year"
+            android:text="@string/order_people_number"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -137,63 +169,11 @@
             android:layout_weight="2"
             android:paddingLeft="4dp">
 
-            <!-- Weight field -->
+            <!-- People number field -->
             <EditText
                 android:id="@+id/edit_book_year"
-                android:hint="Year"
+                android:hint="@string/order_people_number_hint"
                 android:inputType="number"
-                style="@style/EditorFieldStyle" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/container_author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="Author"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
-
-            <!-- Weight field -->
-            <EditText
-                android:id="@+id/edit_book_author"
-                android:hint="Author"
-                style="@style/EditorFieldStyle" />
-        </RelativeLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/container_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="Price"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
-
-            <!-- Weight field -->
-            <EditText
-                android:id="@+id/edit_book_price"
-                android:hint="Price"
-                android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
