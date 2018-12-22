@@ -59,7 +59,7 @@ public class ZJGFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", currentOrderId);
-                intent.putExtra("message", bundle);
+                intent.putExtra("Message", bundle);
 
                 startActivity(intent);
             }

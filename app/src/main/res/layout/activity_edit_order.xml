@@ -16,7 +16,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_No"
+            android:text="No"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -31,7 +31,7 @@
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_book_no"
-                android:hint="@string/hint_book_no"
+                android:hint="No"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
@@ -46,7 +46,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_type"
+            android:text="Type"
             style="@style/CategoryStyle" />
 
         <!-- Input field -->
@@ -75,7 +75,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_name"
+            android:text="Name"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -88,7 +88,7 @@
             <!-- Weight field -->
             <EditText
                 android:id="@+id/edit_book_name"
-                android:hint="@string/hint_book_name"
+                android:hint="Name"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
@@ -101,7 +101,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_publisher"
+            android:text="Publisher"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -114,7 +114,7 @@
             <!-- Weight field -->
             <EditText
                 android:id="@+id/edit_book_publisher"
-                android:hint="@string/hint_book_publisher"
+                android:hint="Publisher"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
@@ -127,7 +127,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_year"
+            android:text="Year"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -140,7 +140,7 @@
             <!-- Weight field -->
             <EditText
                 android:id="@+id/edit_book_year"
-                android:hint="@string/hint_book_year"
+                android:hint="Year"
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
@@ -154,7 +154,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_author"
+            android:text="Author"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -167,7 +167,7 @@
             <!-- Weight field -->
             <EditText
                 android:id="@+id/edit_book_author"
-                android:hint="@string/hint_book_author"
+                android:hint="Author"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
@@ -179,7 +179,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_price"
+            android:text="Price"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -192,7 +192,7 @@
             <!-- Weight field -->
             <EditText
                 android:id="@+id/edit_book_price"
-                android:hint="@string/hint_book_price"
+                android:hint="Price"
                 android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>

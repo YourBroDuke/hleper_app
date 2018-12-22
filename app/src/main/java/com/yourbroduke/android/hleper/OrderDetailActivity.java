@@ -21,7 +21,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
 
-        Bundle bundle = getIntent().getBundleExtra("message");
+        Bundle bundle = getIntent().getBundleExtra("Message");
         mID = bundle.getInt("id");
 
         OrderDetailItem orderDetailItem = getOrderItemByID(mID);
