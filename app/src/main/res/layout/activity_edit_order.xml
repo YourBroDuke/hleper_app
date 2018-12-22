@@ -144,7 +144,7 @@
 
             <!-- Reward field -->
             <EditText
-                android:id="@+id/edit_book_publisher"
+                android:id="@+id/edit_order_reward"
                 android:hint="@string/order_reward_hint"
                 android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
@@ -171,7 +171,7 @@
 
             <!-- People number field -->
             <EditText
-                android:id="@+id/edit_book_year"
+                android:id="@+id/edit_order_people_number"
                 android:hint="@string/order_people_number_hint"
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />

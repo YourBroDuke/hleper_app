@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the campus drop-down Spinner -->
+    <string-array name="order_campus_options">
+        <item>@string/campus_unknown</item>'
+        <item>@string/campus_zjg</item>
+        <item>@string/campus_yq</item>
+        <item>@string/campus_xx</item>
+        <item>@string/campus_zj</item>
+    </string-array>
+
+    <!-- These are the options displayed in the type drop-down Spinner -->
+    <string-array name="order_type_options">
+        <item>@string/type_unknown</item>
+        <item>@string/type_taxi</item>
+        <item>@string/type_cheer</item>
+        <item>@string/type_takeaway</item>
+        <item>@string/type_help</item>
+    </string-array>
+</resources>

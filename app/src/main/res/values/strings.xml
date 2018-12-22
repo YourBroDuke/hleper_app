@@ -44,6 +44,14 @@
     <string name="campus_yq">玉泉</string>
     <string name="campus_xx">西溪</string>
     <string name="campus_zj">之江</string>
+    <string name="campus_unknown">Unknown</string>
+    <string name="type_unknown">Unknown</string>
+    <string name="type_taxi">拼车</string>
+    <string name="type_cheer">拼单</string>
+    <string name="type_takeaway">取外卖</string>
+    <string name="type_help">其他帮助</string>
     <string name="action_refresh">refresh</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_default">default</string>
 
 </resources>
