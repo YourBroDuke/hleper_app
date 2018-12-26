@@ -53,5 +53,11 @@
     <string name="action_refresh">refresh</string>
     <string name="menu_save">Save</string>
     <string name="menu_default">default</string>
+    <string name="manage_player">Profile</string>
+    <string name="wallet">Wallet</string>
+    <string name="settings">settings</string>
+    <string name="about">about</string>
+    <string name="help">nothing help</string>
+    <string name="donate">don\'t donate now</string>
 
 </resources>

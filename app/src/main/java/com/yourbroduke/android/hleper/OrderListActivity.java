@@ -1,17 +1,28 @@
 package com.yourbroduke.android.hleper;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 public class OrderListActivity extends AppCompatActivity {
 
+    private Toolbar mToolBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orders_main);
 
@@ -19,6 +30,13 @@ public class OrderListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("Message");
         final int flag = bundle.getInt("type");
+
+        // Set up the tool bar with material drawer
+        mToolBar = (Toolbar) findViewById(R.id.tool_bar);
+        mToolBar.setTitle("");
+        setSupportActionBar(mToolBar);
+
+        DrawUtil.getDrawer(this, mToolBar, savedInstanceState);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         assert viewPager != null;
@@ -43,5 +61,10 @@ public class OrderListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
     }
 }
