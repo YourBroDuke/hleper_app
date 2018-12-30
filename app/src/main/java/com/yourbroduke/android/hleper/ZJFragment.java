@@ -1,25 +1,36 @@
 package com.yourbroduke.android.hleper;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.yourbroduke.android.hleper.data.ListOrderItem;
 import com.yourbroduke.android.hleper.data.ListOrderItemAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ZJFragment extends Fragment {
+public class ZJFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<ListOrderItem>>{
+
+    private static final String ORDERS_QUERY_URL = "http://192.227.162.248/orders";
+
     public ZJFragment() {
         // Required empty public constructor
     }
 
     // The type of the order needed to be fetched
-    private int mFlag;
+    private int mType;
+    private ListOrderItemAdapter mAdapter;
+    private int mCount;
 
 
     @Override
@@ -29,7 +40,7 @@ public class ZJFragment extends Fragment {
         // Get the type of current activity
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getBundleExtra("Message");
-        mFlag = bundle.getInt("type");
+        mType = bundle.getInt("type");
     }
 
     @Override
@@ -37,31 +48,60 @@ public class ZJFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_order_list, container, false);
 
-        // Get the list of word needed to show
-        final ArrayList<ListOrderItem> orders = getLatestOrders(mFlag, 4);
-
         // Create an {@link ListOrderItemAdapter}, whose data source is a list of {@link ListOrderItem}s. The
         // adapter knows how to create list items for each item in the list.
-        ListOrderItemAdapter adapter = new ListOrderItemAdapter(getActivity(), orders);
+        mAdapter = new ListOrderItemAdapter(getActivity(), new ArrayList<ListOrderItem>());
 
         // Find the ListView in the xml to show orders
         ListView listView = rootView.findViewById(R.id.list);
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                int currentOrderId = mAdapter.getItem(position).getmID();
+
+                Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", currentOrderId);
+                intent.putExtra("Message", bundle);
+
+                startActivity(intent);
+            }
+        });
+
+        LoaderManager loaderManager = getActivity().getSupportLoaderManager();
+
+        loaderManager.initLoader(4, null, this);
 
         return rootView;
     }
 
-    private ArrayList<ListOrderItem> getLatestOrders(int flag, int num) {
-        ArrayList<ListOrderItem> result = new ArrayList<>();
-        result.add(new ListOrderItem(1, 3, 1, 0, 1.256,
-                "帮我拿外卖", "玉泉5舍 129室 尾号2349"));
-        result.add(new ListOrderItem(2, 2, 1, 0, 0.000,
-                "一点点拼单", "玉泉5舍 129室"));
-        result.add(new ListOrderItem(3, 1, 3, 1, 0.000,
-                "紫金港->杭州东", "11月12号 中午12点出发"));
-        result.add(new ListOrderItem(4, 4, 1, 0, 2.22,
-                "买瓶酸奶", "玉泉5舍 129室"));
-        return result;
+    @Override
+    public Loader<List<ListOrderItem>> onCreateLoader(int id, Bundle args) {
+
+        Toast.makeText(getActivity(), "Loader created", Toast.LENGTH_SHORT).show();
+        Uri baseUri = Uri.parse(ORDERS_QUERY_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("campus", "4");
+
+        return new OrderLoader(getActivity(), uriBuilder.toString());
+    }
+    @Override
+    public void onLoadFinished(Loader<List<ListOrderItem>> loader, List<ListOrderItem> orders) {
+        mAdapter.clear();
+        Toast.makeText(getActivity(), "Finished", Toast.LENGTH_SHORT).show();
+        if (orders != null && !orders.isEmpty()) {
+            mAdapter.addAll(orders);
+            Toast.makeText(getActivity(), "NOT NULL", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<ListOrderItem>> loader) {
+        mAdapter.clear();
     }
 }

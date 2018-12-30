@@ -7,24 +7,45 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.yourbroduke.android.hleper.data.HleperUser;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
+
+    static public HleperUser mainUser;
+    private Button signInOrOutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        signInOrOutBtn = (Button) findViewById(R.id.main_signInOrOut);
 
-        Button signInOrOutBtn = (Button) findViewById(R.id.main_signInOrOut);
-        signInOrOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent logInIntent= new Intent(MainActivity.this, SignInActivity.class);
+        FileUtils.setmMainContext(this);
+        mainUser = new HleperUser();
+        try {
+            mainUser = FileUtils.readUserInfo();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (mainUser.getmID() == -1) {
+            signInOrOutBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent logInIntent= new Intent(MainActivity.this, SignInActivity.class);
 
-                startActivity(logInIntent);
-            }
-        });
+                    startActivity(logInIntent);
+                }
+            });
+        }
+        else {
+            signInOrOutBtn.setOnClickListener(null);
+            signInOrOutBtn.setText(mainUser.getmName());
+        }
 
         ImageButton taxiBtn = (ImageButton) findViewById(R.id.imBtn_tl);
         taxiBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,4 +84,24 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Message", bundle);
         startActivity(intent);
     }
+
+    @Override
+    protected void onResume() {
+        if (mainUser.getmID() != -1) {
+            signInOrOutBtn.setOnClickListener(null);
+            signInOrOutBtn.setText(mainUser.getmName());
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        try {
+            FileUtils.cleanUserInfo();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
+    }
+
 }
