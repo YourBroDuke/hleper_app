@@ -8,12 +8,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ import java.util.List;
 public class OrderListActivity extends AppCompatActivity{
 
     private Toolbar mToolBar;
+    private ViewPager mViewPager;
+    SwipeRefreshLayout mRefreshLayout;
 
     private static final String ORDERS_QUERY_URL = "192.227.162.248:8000/orders";
 
@@ -49,17 +54,17 @@ public class OrderListActivity extends AppCompatActivity{
 
         DrawUtil.getDrawer(this, mToolBar, savedInstanceState);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        assert viewPager != null;
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        assert mViewPager != null;
         CampusAdapter campusAdapter = new CampusAdapter(this, getSupportFragmentManager());
 
         // Set the adapter onto the view pager
-        viewPager.setAdapter(campusAdapter);
+        mViewPager.setAdapter(campusAdapter);
 
         // Find the tab layout that shows the tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         assert tabLayout != null;
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

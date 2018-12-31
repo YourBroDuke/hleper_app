@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,9 @@ public class ZJFragment extends Fragment implements LoaderManager.LoaderCallback
     private int mType;
     private ListOrderItemAdapter mAdapter;
     private int mCount;
+    private SwipeRefreshLayout mRefreshLayout;
+    private ViewPager mViewPager;
+    private LoaderManager mLoaderManager;
 
 
     @Override
@@ -51,6 +56,9 @@ public class ZJFragment extends Fragment implements LoaderManager.LoaderCallback
         // Create an {@link ListOrderItemAdapter}, whose data source is a list of {@link ListOrderItem}s. The
         // adapter knows how to create list items for each item in the list.
         mAdapter = new ListOrderItemAdapter(getActivity(), new ArrayList<ListOrderItem>());
+        mRefreshLayout = rootView.findViewById(R.id.pullToRefresh);
+        mViewPager = getActivity().findViewById(R.id.viewpager);
+
 
         // Find the ListView in the xml to show orders
         ListView listView = rootView.findViewById(R.id.list);
@@ -71,9 +79,18 @@ public class ZJFragment extends Fragment implements LoaderManager.LoaderCallback
             }
         });
 
-        LoaderManager loaderManager = getActivity().getSupportLoaderManager();
+        mLoaderManager = getActivity().getSupportLoaderManager();
 
-        loaderManager.initLoader(4, null, this);
+        mLoaderManager.initLoader(4, null, this);
+
+        mRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        mLoaderManager.restartLoader(4, null, ZJFragment.this);
+                    }
+                }
+        );
 
         return rootView;
     }
@@ -81,11 +98,11 @@ public class ZJFragment extends Fragment implements LoaderManager.LoaderCallback
     @Override
     public Loader<List<ListOrderItem>> onCreateLoader(int id, Bundle args) {
 
-        Toast.makeText(getActivity(), "Loader created", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Loader" + id +"created", Toast.LENGTH_SHORT).show();
         Uri baseUri = Uri.parse(ORDERS_QUERY_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("limit", "25");
         uriBuilder.appendQueryParameter("campus", "4");
 
         return new OrderLoader(getActivity(), uriBuilder.toString());
@@ -93,10 +110,12 @@ public class ZJFragment extends Fragment implements LoaderManager.LoaderCallback
     @Override
     public void onLoadFinished(Loader<List<ListOrderItem>> loader, List<ListOrderItem> orders) {
         mAdapter.clear();
+
+        if (mRefreshLayout.isRefreshing())
+            mRefreshLayout.setRefreshing(false);
         Toast.makeText(getActivity(), "Finished", Toast.LENGTH_SHORT).show();
         if (orders != null && !orders.isEmpty()) {
             mAdapter.addAll(orders);
-            Toast.makeText(getActivity(), "NOT NULL", Toast.LENGTH_SHORT).show();
         }
     }
 

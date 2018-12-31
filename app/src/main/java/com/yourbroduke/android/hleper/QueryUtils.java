@@ -70,6 +70,8 @@ public class QueryUtils {
 
         String jsonResponse = null;
 
+        Log.i("YQFragment", requestUrl);
+
         jsonResponse = makeHttpRequest(url);
         Log.d(LOG_TAG, jsonResponse);
         return extractOrdersFromJson(jsonResponse);
@@ -102,7 +104,7 @@ public class QueryUtils {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-
+            Log.i("YQFragment", "Response code" + urlConnection.getResponseCode());
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
