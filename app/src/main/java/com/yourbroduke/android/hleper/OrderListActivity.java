@@ -70,6 +70,12 @@ public class OrderListActivity extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (MainActivity.mainUser.getmID() == -1) {
+                    Toast.makeText(OrderListActivity.this, "请先登录", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Intent intent = new Intent(OrderListActivity.this, EditOrderActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", flag);
