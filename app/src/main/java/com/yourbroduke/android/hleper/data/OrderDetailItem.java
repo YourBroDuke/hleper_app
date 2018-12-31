@@ -17,6 +17,11 @@ public class OrderDetailItem extends ListOrderItem {
         // do nothing
     }
 
+    public OrderDetailItem(int ID, int type) {
+        setmID(ID);
+        setmType(type);
+    }
+
     public OrderDetailItem(String creatorName, int creatorID, String descriptionLong,
                            int ID, int type, int totalPeople, int currentPeople,
                            double reward, String title, String descriptionShort) {

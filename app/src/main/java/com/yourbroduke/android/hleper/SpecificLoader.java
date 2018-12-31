@@ -30,7 +30,17 @@ public class SpecificLoader extends AsyncTaskLoader<OrderDetailItem> {
     public OrderDetailItem loadInBackground() {
         if (mUrl == null)
             return null;
+        int begin = mUrl.indexOf('/', 10);
+        int end = mUrl.indexOf('?');
+        String queryType = mUrl.substring(begin+1, end);
 
-        return QueryUtils.fetchSpecificData(mUrl);
+        if (queryType.equals("specific")) {
+            return QueryUtils.fetchSpecificData(mUrl);
+        } else if (queryType.equals("order_plus")) {
+            return QueryUtils.postOrderPlus(mUrl);
+        } else if (queryType.equals("order_done")) {
+            return QueryUtils.postOrderDone(mUrl);
+        }
+        return null;
     }
 }

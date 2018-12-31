@@ -120,6 +120,30 @@ public class QueryUtils {
         return extractSpecificOrderFromJson(jsonResponse);
     }
 
+    static OrderDetailItem postOrderPlus(String requestUrl) {
+        URL url = createUrl(requestUrl);
+
+        String response;
+        response = makeHttpRequest(url);
+
+        if (response.equals("Success"))
+            return new OrderDetailItem(-1, -1);
+        else
+            return new OrderDetailItem(-1, -2);
+    }
+
+    static OrderDetailItem postOrderDone(String requestUrl) {
+        URL url = createUrl(requestUrl);
+
+        String response = null;
+        response = makeHttpRequest(url);
+
+        if (response.equals("Success"))
+            return new OrderDetailItem(-2, -1);
+        else
+            return new OrderDetailItem(-2, -2);
+    }
+
     private static URL createUrl(String stringUrl) {
         URL url = null;
 
