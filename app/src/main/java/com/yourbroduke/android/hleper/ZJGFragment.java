@@ -117,7 +117,6 @@ public class ZJGFragment extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public Loader<List<ListOrderItem>> onCreateLoader(int id, Bundle args) {
 
-        Toast.makeText(getActivity(), "Loader" + id +"created", Toast.LENGTH_SHORT).show();
         Uri baseUri = Uri.parse(ORDERS_QUERY_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
@@ -132,7 +131,6 @@ public class ZJGFragment extends Fragment implements LoaderManager.LoaderCallbac
 
         if (mRefreshLayout.isRefreshing())
             mRefreshLayout.setRefreshing(false);
-        Toast.makeText(getActivity(), "Finished", Toast.LENGTH_SHORT).show();
         if (orders != null && !orders.isEmpty()) {
             mAdapter.addAll(orders);
         }

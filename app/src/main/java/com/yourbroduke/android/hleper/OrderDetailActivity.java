@@ -27,6 +27,7 @@ public class OrderDetailActivity extends AppCompatActivity implements LoaderMana
 
     // Current ID of the order detail
     private int mID;
+    private int mUserID;
     private ImageView imgView;
     private TextView titleText, creatorText, rewardText, ratioText, detailText;
     private LoaderManager mLoaderManager;
@@ -132,6 +133,8 @@ public class OrderDetailActivity extends AppCompatActivity implements LoaderMana
         // Set text with the title in current order item
         String detailBeShown = "详细信息："+orderDetailItem.getmDescriptionLong();
         detailText.setText(detailBeShown);
+
+        mUserID = orderDetailItem.getmCreatorID();
     }
 
     @Override
@@ -155,7 +158,9 @@ public class OrderDetailActivity extends AppCompatActivity implements LoaderMana
                 return true;
 
             case R.id.action_save:
-                if (mID == MainActivity.mainUser.getmID())
+
+
+                if (mUserID == MainActivity.mainUser.getmID())
                     mLoaderManager.restartLoader(3, null, this);
                 else
                     mLoaderManager.restartLoader(2, null, this);
