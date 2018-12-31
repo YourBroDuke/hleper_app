@@ -44,19 +44,24 @@ public class FileUtils {
         }
     }
 
-    static public void writeUserInfo(HleperUser crtUser) throws JSONException, IOException {
+    static public void writeUserInfo(HleperUser crtUser){
         JSONObject fileObj = new JSONObject();
 
-        fileObj.put("id", crtUser.getmID());
-        fileObj.put("name", crtUser.getmName());
-        fileObj.put("email", crtUser.getmEmail());
-        fileObj.put("phone", crtUser.getmPhoneNumber());
-        fileObj.put("balance", crtUser.getmBalance());
+        try {
+            fileObj.put("id", crtUser.getmID());
+            fileObj.put("name", crtUser.getmName());
+            fileObj.put("email", crtUser.getmEmail());
+            fileObj.put("phone", crtUser.getmPhoneNumber());
+            fileObj.put("balance", crtUser.getmBalance());
 
-        writeFileData("user.json", fileObj.toString());
+            writeFileData("user.json", fileObj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    static public void cleanUserInfo() throws IOException {
+    static public void cleanUserInfo() {
         writeFileData("user.json", "");
     }
 
@@ -83,14 +88,19 @@ public class FileUtils {
         return result;
     }
 
-    static private void writeFileData(String fileName, String content) throws IOException {
-        FileOutputStream fos = mMainContext.openFileOutput(fileName, Context.MODE_PRIVATE);
+    static private void writeFileData(String fileName, String content) {
+        FileOutputStream fos = null;
+        try {
+            fos = mMainContext.openFileOutput(fileName, Context.MODE_PRIVATE);byte[] bytes = content.getBytes();
 
-        byte[] bytes = content.getBytes();
+            fos.write(bytes);
 
-        fos.write(bytes);
-
-        fos.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static public void setmMainContext(Context mainContext) {

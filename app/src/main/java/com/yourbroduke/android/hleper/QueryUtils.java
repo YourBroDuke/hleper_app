@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.yourbroduke.android.hleper.data.HleperUser;
 import com.yourbroduke.android.hleper.data.ListOrderItem;
 import com.yourbroduke.android.hleper.data.OrderDetailItem;
 
@@ -100,6 +101,34 @@ public class QueryUtils {
         return null;
     }
 
+    public static HleperUser extractUserDataFromJson(String userJSON) {
+        if (TextUtils.isEmpty(userJSON)) {
+            return null;
+        }
+
+        try {
+            JSONObject baseJsonResponse = new JSONObject(userJSON);
+            JSONObject userInfo = baseJsonResponse.getJSONObject("user");
+            boolean dataValid = baseJsonResponse.getBoolean("valid");
+
+            if (dataValid) {
+                int userID = userInfo.getInt("id");
+                String userName = userInfo.getString("name");
+                String userEmail = userInfo.getString("email");
+                String userPhone = userInfo.getString("phone");
+                double userBalance = userInfo.getDouble("balance");
+
+                return new HleperUser(userID, userName, userEmail, userPhone, (float)userBalance);
+            } else {
+                return new HleperUser();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     static List<ListOrderItem> fetchOrdersData(String requestUrl) {
         URL url = createUrl(requestUrl);
 
@@ -118,6 +147,16 @@ public class QueryUtils {
         jsonResponse = makeHttpRequest(url);
         Log.d(LOG_TAG, jsonResponse);
         return extractSpecificOrderFromJson(jsonResponse);
+    }
+
+    static HleperUser fetchUserData(String requestUrl) {
+        URL url = createUrl(requestUrl);
+
+        String jsonResponse = null;
+
+        jsonResponse = makeHttpRequest(url);
+        Log.d(LOG_TAG, jsonResponse);
+        return extractUserDataFromJson(jsonResponse);
     }
 
     static OrderDetailItem postOrderPlus(String requestUrl) {

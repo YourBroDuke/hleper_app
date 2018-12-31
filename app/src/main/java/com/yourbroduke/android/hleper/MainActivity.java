@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         signInOrOutBtn = (Button) findViewById(R.id.main_signInOrOut);
 
         FileUtils.setmMainContext(this);
-        mainUser = new HleperUser();
+        if (mainUser == null) mainUser = new HleperUser();
         try {
             mainUser = FileUtils.readUserInfo();
         } catch (JSONException e) {
@@ -96,11 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        try {
-            FileUtils.cleanUserInfo();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtils.cleanUserInfo();
         super.onDestroy();
     }
 
