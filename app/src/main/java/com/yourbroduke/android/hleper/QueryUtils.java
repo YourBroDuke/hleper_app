@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.yourbroduke.android.hleper.data.ListOrderItem;
+import com.yourbroduke.android.hleper.data.OrderDetailItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,16 +66,58 @@ public class QueryUtils {
         return orders;
     }
 
+    private static OrderDetailItem extractSpecificOrderFromJson(String orderJSON) {
+        if (TextUtils.isEmpty(orderJSON)) {
+            return null;
+        }
+
+        try {
+            JSONObject baseJsonResponse = new JSONObject(orderJSON);
+            JSONObject metaData = baseJsonResponse.getJSONObject("metadata");
+            JSONObject orderInfo = baseJsonResponse.getJSONObject("order_info");
+
+            boolean dataValid = metaData.getBoolean("valid");
+
+            if (dataValid) {
+                int userID = orderInfo.getInt("user_id");
+                String userName = orderInfo.getString("user_name");
+                String detail = orderInfo.getString("detail");
+                int orderID = orderInfo.getInt("order_id");
+                int type = orderInfo.getInt("type");
+                int max_num = orderInfo.getInt("max_num");
+                int crt_num = orderInfo.getInt("current_num");
+                double reward = orderInfo.getDouble("reward");
+                String title = orderInfo.getString("title");
+                String description = orderInfo.getString("description");
+
+                return new OrderDetailItem(userName, userID, detail, orderID, type, max_num, crt_num, reward, title, description);
+            } else {
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     static List<ListOrderItem> fetchOrdersData(String requestUrl) {
         URL url = createUrl(requestUrl);
 
         String jsonResponse = null;
 
-        Log.i("YQFragment", requestUrl);
-
         jsonResponse = makeHttpRequest(url);
         Log.d(LOG_TAG, jsonResponse);
         return extractOrdersFromJson(jsonResponse);
+    }
+
+    static OrderDetailItem fetchSpecificData(String requestUrl) {
+        URL url = createUrl(requestUrl);
+
+        String jsonResponse = null;
+
+        jsonResponse = makeHttpRequest(url);
+        Log.d(LOG_TAG, jsonResponse);
+        return extractSpecificOrderFromJson(jsonResponse);
     }
 
     private static URL createUrl(String stringUrl) {

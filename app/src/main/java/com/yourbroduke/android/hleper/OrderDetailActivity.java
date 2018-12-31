@@ -1,20 +1,31 @@
 package com.yourbroduke.android.hleper;
 
+import android.net.Uri;
+import android.support.v4.app.LoaderManager;
 import android.os.Bundle;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.yourbroduke.android.hleper.data.ListOrderItem;
 import com.yourbroduke.android.hleper.data.OrderDetailItem;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
-public class OrderDetailActivity extends AppCompatActivity {
+public class OrderDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<OrderDetailItem>{
+
+    private static final String SPECIFIC_QUERY_URL = "http://192.227.162.248/specific";
 
     // Current ID of the order detail
     private int mID;
+    private ImageView imgView;
+    private TextView titleText, creatorText, rewardText, ratioText, detailText;
+    private LoaderManager mLoaderManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +35,37 @@ public class OrderDetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getBundleExtra("Message");
         mID = bundle.getInt("id");
 
-        OrderDetailItem orderDetailItem = getOrderItemByID(mID);
-
         // Find the ImageView in the activity_order_detail.xml layout with the ID detail_img
-        ImageView imgView = (ImageView) findViewById(R.id.detail_img);
+        imgView = (ImageView) findViewById(R.id.detail_img);
+        // Find the TextView in the activity_order_detail.xml layout with the ID detail_title
+        titleText = (TextView) findViewById(R.id.detail_title);
+        // Find the TextView in the activity_order_detail.xml layout with the ID detail_title
+        creatorText = (TextView) findViewById(R.id.creator_name);
+        // Find the TextView in the list_order_item.xml layout with the ID info_title
+        rewardText = (TextView) findViewById(R.id.reward_data);
+        // Find the TextView in the list_order_item.xml layout with the ID item_ratio
+        ratioText = (TextView) findViewById(R.id.item_ratio);
+        // Find the TextView in the activity_order_detail.xml layout with the ID detail_title
+        detailText = (TextView) findViewById(R.id.detail_detail);
+
+        mLoaderManager = getSupportLoaderManager();
+
+        mLoaderManager.initLoader(3, null, this);
+    }
+
+    @Override
+    public Loader<OrderDetailItem> onCreateLoader(int id, Bundle args) {
+
+        Uri baseUri = Uri.parse(SPECIFIC_QUERY_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("order_id", ""+mID);
+
+        return new SpecificLoader(this, uriBuilder.toString());
+    }
+    @Override
+    public void onLoadFinished(Loader<OrderDetailItem> loader, OrderDetailItem orderDetailItem) {
+
         // Get the img resource
         int imgSrc = getImgSrcByType(orderDetailItem.getmType());
         // Set the img  with the src id founded
@@ -35,36 +73,31 @@ public class OrderDetailActivity extends AppCompatActivity {
         // Make sure the view is visible
         imgView.setVisibility(View.VISIBLE);
 
-        // Find the TextView in the activity_order_detail.xml layout with the ID detail_title
-        TextView titleText = (TextView) findViewById(R.id.detail_title);
         // Set text with the title in current order item
         titleText.setText(orderDetailItem.getmTitle());
 
-        // Find the TextView in the activity_order_detail.xml layout with the ID detail_title
-        TextView creatorText = (TextView) findViewById(R.id.creator_name);
         // Set text with the title in current order item
         String creatorNameToBeShown = "发起用户："+orderDetailItem.getmCreatorName();
         creatorText.setText(creatorNameToBeShown);
 
-        // Find the TextView in the list_order_item.xml layout with the ID info_title
-        TextView rewardText = (TextView) findViewById(R.id.reward_data);
         // Get the string showed on the view
         String rewardStr = new DecimalFormat("#0.00").format(orderDetailItem.getmReward());
         // Set the text with the string being cast
         rewardText.setText(rewardStr);
 
-        // Find the TextView in the list_order_item.xml layout with the ID item_ratio
-        TextView ratioText = (TextView) findViewById(R.id.item_ratio);
         // Get the people ratio string of current order
         String ratioStr = orderDetailItem.getmCurrentPeople() + "/" + orderDetailItem.getmTotalPeople();
         // Set the text with the string being created
         ratioText.setText(ratioStr);
 
-        // Find the TextView in the activity_order_detail.xml layout with the ID detail_title
-        TextView detailText = (TextView) findViewById(R.id.detail_detail);
         // Set text with the title in current order item
         String detailBeShown = "详细信息："+orderDetailItem.getmDescriptionLong();
         detailText.setText(detailBeShown);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<OrderDetailItem> loader) {
+        // Do nothing
     }
 
     @Override
@@ -75,12 +108,6 @@ public class OrderDetailActivity extends AppCompatActivity {
         return true;
     }
 
-    private OrderDetailItem getOrderItemByID(int id) {
-        OrderDetailItem orderDetailItem = new OrderDetailItem("YourBroDuke", 0, "暂无",
-                id, 1, 1, 0, 1.28, "帮我拿外卖", "这个介绍十分短暂");
-
-        return orderDetailItem;
-    }
 
     /**
      * Get the img src by the type of the order
