@@ -113,6 +113,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/log_in_button"
             android:layout_centerInParent="true"
             android:text="@string/log_in_str"
             android:background="@drawable/my_btn_bg"

@@ -65,13 +65,13 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_form);
 
-        emailAddressView = (EditText) findViewById(R.id.in_edit_email);
-        passwordView = (EditText) findViewById(R.id.in_edit_passwd);
-        repeatPasswordView = (EditText) findViewById(R.id.in_edit_verify);
+        emailAddressView = (EditText) findViewById(R.id.up_edit_email);
+        passwordView = (EditText) findViewById(R.id.up_edit_passwd);
+        repeatPasswordView = (EditText) findViewById(R.id.up_edit_verify);
 
         mLoaderManager = getSupportLoaderManager();
 
-        Button signUpButton = (Button) findViewById(R.id.sing_up_button);
+        Button signUpButton = (Button) findViewById(R.id.sign_up_button);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,8 +79,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
                 String pwStr = passwordView.getText().toString().trim();
                 String verifyStr = repeatPasswordView.getText().toString().trim();
 
-                if (!pwStr.equals(verifyStr) || emailStr.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "两次输入密码不一致！", Toast.LENGTH_LONG).show();
+                if (!pwStr.equals(verifyStr) || emailStr.isEmpty() || pwStr.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "请填写完整且保证两次密码相同", Toast.LENGTH_LONG).show();
                     return;
                 }
 
