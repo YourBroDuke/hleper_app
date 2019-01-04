@@ -21,9 +21,9 @@ import java.util.List;
 
 public class OrderDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<OrderDetailItem>{
 
-    private static final String SPECIFIC_QUERY_URL = "http://192.227.162.248/specific";
-    private static final String PLUS_QUERY_URL = "http://192.227.162.248/order_plus";
-    private static final String FINISH_QUERY_URL = "http://192.227.162.248/order_done";
+    private static final String SPECIFIC_QUERY_URL = "http://45.77.33.175/specific";
+    private static final String PLUS_QUERY_URL = "http://45.77.33.175/order_plus";
+    private static final String FINISH_QUERY_URL = "http://45.77.33.175/order_done";
 
     // Current ID of the order detail
     private int mID;
@@ -159,8 +159,9 @@ public class OrderDetailActivity extends AppCompatActivity implements LoaderMana
 
             case R.id.action_save:
 
-
-                if (mUserID == MainActivity.mainUser.getmID())
+                if (MainActivity.mainUser.getmID() == -1)
+                    Toast.makeText(this, "Please log in first!", Toast.LENGTH_LONG).show();
+                else if (mUserID == MainActivity.mainUser.getmID())
                     mLoaderManager.restartLoader(3, null, this);
                 else
                     mLoaderManager.restartLoader(2, null, this);

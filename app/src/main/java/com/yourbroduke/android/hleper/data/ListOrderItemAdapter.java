@@ -1,6 +1,7 @@
 package com.yourbroduke.android.hleper.data;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -66,6 +67,10 @@ public class ListOrderItemAdapter extends ArrayAdapter<ListOrderItem> {
         String ratioStr = currentOrder.getmCurrentPeople() + "/" + currentOrder.getmTotalPeople();
         // Set the text with the string being created
         ratioText.setText(ratioStr);
+        if (currentOrder.getmCurrentPeople() == currentOrder.getmTotalPeople())
+            ratioText.setTextColor(Color.rgb(255, 0, 0));
+        else
+            ratioText.setTextColor(Color.rgb(0,0,0));
 
 
         // Find the ImageView in the list_order_item.xml layout with the ID order_img

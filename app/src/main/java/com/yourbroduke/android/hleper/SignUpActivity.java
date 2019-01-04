@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<HleperUser>{
 
-    private static final String SIGN_QUERY_URL = "http://192.227.162.248/sign_up";
+    private static final String SIGN_QUERY_URL = "http://45.77.33.175/sign_up";
     private EditText emailAddressView, passwordView, repeatPasswordView;
     private LoaderManager mLoaderManager;
     boolean initFlag = true;

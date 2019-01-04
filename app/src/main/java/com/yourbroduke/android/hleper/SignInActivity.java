@@ -16,7 +16,7 @@ import com.yourbroduke.android.hleper.data.HleperUser;
 
 public class SignInActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<HleperUser>{
 
-    private static final String LOG_QUERY_URL = "http://192.227.162.248/log_in";
+    private static final String LOG_QUERY_URL = "http://45.77.33.175/log_in";
     private EditText emailAddressView, passwordView;
     private LoaderManager mLoaderManager;
     boolean initFlag = true;

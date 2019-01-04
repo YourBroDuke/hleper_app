@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class EditOrderActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>{
 
-    private static final String POST_URL = "http://192.227.162.248/new_order";
+    private static final String POST_URL = "http://45.77.33.175/new_order";
     private LoaderManager mLoaderManager;
     boolean initFlag = true;
 

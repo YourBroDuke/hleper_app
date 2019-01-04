@@ -25,7 +25,7 @@ import java.util.List;
 
 public class XXFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<ListOrderItem>>{
 
-    private static final String ORDERS_QUERY_URL = "http://192.227.162.248/orders";
+    private static final String ORDERS_QUERY_URL = "http://45.77.33.175/orders";
 
     public XXFragment() {
         // Required empty public constructor

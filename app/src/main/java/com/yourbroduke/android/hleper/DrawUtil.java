@@ -29,10 +29,17 @@ public class DrawUtil {
     public static void getDrawer(final Activity activity, Toolbar toolbar, Bundle outState) {
 
         mActivity = activity;
-
+        String nameStr, emailStr;
+        if (MainActivity.mainUser.getmID() == -1) {
+            nameStr = "Sign in/Sign up";
+            emailStr = "Please log in first!";
+        } else {
+            nameStr = MainActivity.mainUser.getmName();
+            emailStr = MainActivity.mainUser.getmEmail();
+        }
         final IProfile profile = new ProfileDrawerItem()
-                .withName("Sign in/Sign up")
-                .withEmail("3160100000@zju.edu.cn")
+                .withName(nameStr)
+                .withEmail(emailStr)
                 .withIcon(R.drawable.family_older_brother);
 
 

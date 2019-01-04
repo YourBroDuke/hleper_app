@@ -32,7 +32,7 @@ public class OrderListActivity extends AppCompatActivity{
     private ViewPager mViewPager;
     SwipeRefreshLayout mRefreshLayout;
 
-    private static final String ORDERS_QUERY_URL = "192.227.162.248:8000/orders";
+    private static final String ORDERS_QUERY_URL = "http://45.77.33.175/orders";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
